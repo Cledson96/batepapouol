@@ -11,6 +11,30 @@
 </head>
 
 <body>
+    <div class="tudo">
+        <div class="participantes desativa">
+            <div onclick="ativaonline()" class="esquerda"></div>
+            <div class="direita">
+                <div> <h1>Escolha um contato para enviar mensagem :</h1></div>
+            <div class="onlines">
+                <div class="fiz"> <img src="/imagens/sem.png" > <span class="guri">Todos</span></div>
+            </div>
+            <div class="visibilidade">
+                <h2>Escolha a visibilidade:</h1>
+                <div class="publico">
+                    <img src="/imagens/cadeado aberto.png" > 
+                    <span>Público</span>
+                </div>
+                <div class="reservadamente">
+                    
+                        <img src="/imagens/cadeado fechado.png" > 
+                        <span>Reservadamente</span>
+                    
+                </div>
+            </div>
+            </div>
+            
+        </div>
     <div class="tela_inicial ">
         <img src="/imagens/Logo_batePapo.png">
         <input class="input entrada" type="text" placeholder="Digite seu nome">
@@ -20,17 +44,19 @@
     <div class="sala desativa">
         <div class="caixa">
             <img src="/imagens/Logo_batePapo.png">
-            <img src="/imagens/topo.png">
+            <img onclick="ativaonline()" src="/imagens/topo.png">
         </div>
-        <div class="mensagens">
-            <ul>
-            </ul>
-            <div class="caixa mensagem">
-                <input class="enviarMensagem" type="text" placeholder="Escreva aqui...">
-                <img src="/imagens/enviar.png">
-            </div>
+        <ul>
+        </ul>
+        <div class="caixa_mensagem desativa">
+            <input class="enviarMensagem" type="text" placeholder="Escreva aqui...">
+            <img onclick="enviarMensagem()" src="/imagens/enviar.png">
         </div>
+
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ 
+    
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts.js"></script>
 </body>

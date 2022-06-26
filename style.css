@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body {
+.tudo {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    max-height: 800px;
     align-items: center;
-    justify-content: center;
+    min-width: 100%;
+    position: relative;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+body {
+    max-height: 800px;
+
 }
 
 .tela_inicial {
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     margin-top: 72px;
     display: flex;
     align-items: center;
@@ -35,9 +43,10 @@ body {
     line-height: 25px;
     text-align: center;
     margin-top: 94px;
-    
+
 }
-.entrada placeholder{
+
+.entrada placeholder {
     color: #AEAEAE;
 }
 
@@ -56,16 +65,21 @@ button {
 
 .desativa {
     display: none;
+    position: initial;
 }
 
 .caixa {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 80px;
+    min-width: 100%;
+    min-height: 80px;
     flex-direction: row;
-    min-width: 375px;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    background: #FFFFFF;
+
 }
 
 .caixa :nth-child(1) {
@@ -92,6 +106,8 @@ button {
 }
 
 li {
+    margin-top: 3px;
+    margin-bottom: 3px;
     width: 100%;
     min-height: 40px;
     border-radius: 2px;
@@ -99,26 +115,32 @@ li {
     font-family: 'Roboto', sans-serif;
     display: flex;
     align-items: center;
-    
-    
-    
+    flex-wrap: wrap;
+
+
+
 }
 
 ul {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    margin-bottom: 80px;
 
-    width: 100%;
-    min-height: 507px;
-    margin-top: 26px;
-    
+
 }
 
 .status {
     background-color: #bde6d9;
 }
+
 span {
     font-weight: bold;
     margin-right: 5px;
 }
+
 .message {
     background-color: #FFFFFF;
 }
@@ -126,21 +148,157 @@ span {
 .private_message {
     background-color: #c09999;
 }
-.sala{
-    max-width: 1300px;
+
+.sala {
+    overflow: hidden;
+    flex-direction: column;
+    max-width: 100%;
+    max-height: 100%;
+
+
 }
-div{
+
+.ativa {
+    display: flex;
+}
+
+div {
     max-width: 350px;
 }
-.quebra{
+
+.quebra {
     max-width: 100%;
     display: flex;
     overflow-wrap: break-word;
     height: 100%;
     flex-wrap: wrap;
-    
+
 }
-.hora{
+
+.hora {
     color: #AAAAAA;
     font-weight: 400px;
+}
+
+.mensagens {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 850px;
+
+}
+
+.caixa_mensagem {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 80px;
+    z-index: 10;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.caixa_mensagem img {
+    width: 26px;
+    height: 26px;
+}
+
+.caixa_mensagem input {
+    border: none;
+    width: 80%;
+    height: 40px;
+}
+
+.participantes {
+
+    z-index: 15000;
+   
+    min-width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    right: 0;
+   
+    align-items: center;
+}
+
+.participantes h1,
+h2 {
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    height: 84px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.participantes span {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+}
+
+.ativarpart {
+    display: flex;
+
+
+}
+
+.onlines {
+    margin-top: 10px;
+    min-width: 100%;
+    max-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.onlines img {
+    width: 21px;
+    height: 21px;
+    ont-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-right: 10px;
+}
+.fiz{
+    display: flex;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.direita div{
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+.fundo{
+
+}
+.esquerda{
+    width: 30vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+
+
+}
+.direita{
+    width: 70vw;
+    height: 100vh;
+    background-color: #FFFFFF;
 }
