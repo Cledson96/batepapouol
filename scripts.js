@@ -123,7 +123,7 @@ function ultima() {
 }
 
 
-//setInterval(atualizar, 10000)
+setInterval(atualizar, 3000)
 
 function enviarMensagem() {
     let arruma = document.querySelector(".enviarMensagem").value
