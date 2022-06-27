@@ -4,7 +4,8 @@ let usuario = { name: "" };
 let usuario_msg = "Todos";
 let toon = [];
 let modo = "Público";
-//let toon = { name: "" };
+let procu = document.querySelector(".onlines");
+let procurar = procu.querySelector(`.${usuario_msg}`);
 
 function colocar_nome() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
@@ -72,7 +73,7 @@ function online1(ref) {
 
     toon = ref.data;
     console.log(toon);
-    document.querySelector(".onlines").innerHTML = `<div onclick="seleciona(this)" class="fiz"> <div><img src="/imagens/sem.png" > <span class="guri">Todos</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`;
+    document.querySelector(".onlines").innerHTML = `<div onclick="seleciona(this)" class="fiz"> <div><img src="/imagens/sem.png" > <span class="guri Todos">Todos</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`;
     for (let i = 0; i < toon.length; i++) {
         let gurii = toon[i].name;
         document.querySelector(".onlines").innerHTML += `<div onclick="seleciona(this)" class="fiz"> <div> <img src="/imagens/pessoa.png" > <span class="guri ${gurii}">${gurii}</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`
@@ -128,9 +129,9 @@ function enviarMensagem() {
     let arruma = document.querySelector(".enviarMensagem").value
     let froma = usuario.name
     let envia = "";
-    let procu = document.querySelector(".onlines");
-    let procurar = procu.querySelector(`.${usuario_msg}`)
-    if (procurar != null) {
+    procu = document.querySelector(".onlines");
+    procurar = procu.querySelector(`.${usuario_msg}`);
+    if (procurar != null)  {
         if (usuario_msg === "Todos"){
             envia = {
             from: `${froma}`,
@@ -138,15 +139,25 @@ function enviarMensagem() {
             text: `${arruma}`,
             type: "message"
         }
-    } else if ( usuario_msg) {
+    } else if (modo == "Público") {
             envia = {
             from: `${froma}`,
             to: `${usuario_msg}`,
             text: `${arruma}`,
-            type: "private_message"
+            type: "message"
+        } 
+    }else {
+            envia = {
+                from: `${froma}`,
+                to: `${usuario_msg}`,
+                text: `${arruma}`,
+                type: "private_message"
         }
     }
-
+   
+    
+    } else {
+        window.location.reload()
     }
     
     const manda = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', envia);
