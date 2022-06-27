@@ -1,7 +1,9 @@
 let data_name = "";
 let mensagem_data = "";
 let usuario = { name: "" };
-let usuario_msg = "";
+let usuario_msg = "Todos";
+let toon = [];
+let modo = "Público";
 //let toon = { name: "" };
 
 function colocar_nome() {
@@ -12,7 +14,7 @@ function colocar_nome() {
     onlinep();
     promessa.then(entrarsala);
     promessa.catch(erro);
-    
+
 }
 
 function entrarsala(resposta) {
@@ -56,40 +58,28 @@ function online() {
         console.log(`onlinezinho ${usuario.name}`);
     }
 }
-function inicio(){
+function inicio() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages')
     promessa.then(puxarmensagem);
 
 }
-function onlinep(){
+function onlinep() {
     let pessoinhas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
     pessoinhas.then(online1);
-    
+
 }
-function online1(ref){
-    
-    let toon = ref.data;
+function online1(ref) {
+
+    toon = ref.data;
     console.log(toon);
     document.querySelector(".onlines").innerHTML = `<div onclick="seleciona(this)" class="fiz"> <div><img src="/imagens/sem.png" > <span class="guri">Todos</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`;
-    for (let i = 0; i < toon.length ;i++) {
+    for (let i = 0; i < toon.length; i++) {
         let gurii = toon[i].name;
-        document.querySelector(".onlines").innerHTML += `<div onclick="seleciona(this)" class="fiz"> <div> <img src="/imagens/pessoa.png" > <span class="guri">${gurii}</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>` 
-    }
-    
-}
-function seleciona(ref){
-  
-    let referencia = document.querySelector(".add");
-    console.log(referencia);
-    if (referencia !== null){
-        referencia.classList.remove("add");
+        document.querySelector(".onlines").innerHTML += `<div onclick="seleciona(this)" class="fiz"> <div> <img src="/imagens/pessoa.png" > <span class="guri ${gurii}">${gurii}</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`
     }
 
-    ref.querySelector(".seleceionei").classList.add("add");
-    usuario_msg = ref.querySelector(".guri").lastChild;
-    console.log(usuario_msg);
-
 }
+
 function puxarmensagem(ref) {
     mensagem_data = ref.data;
     for (let i = 0; i < mensagem_data.length; i++) {
@@ -97,17 +87,18 @@ function puxarmensagem(ref) {
         let texto = mensagem_data[i].text
         let para = mensagem_data[i].to
         let hora = mensagem_data[i].time
-    
+
         if (tipo == "status") {
             document.querySelector("ul").innerHTML += ` <li class="${tipo}"><span class="hora">(${hora})</span><span>${mensagem_data[i].from}</span> entra na sala ... </li>`
 
         } else if (tipo == "message") {
             document.querySelector("ul").innerHTML += ` <li class="${tipo}"><div class="quebra"><span class="hora">(${hora})</span><span>${mensagem_data[i].from}</span> <h1>para</h1> <span></span> <span>Todos: </span> <h1>${texto}</h1></div> </li>`
 
-        } else if (tipo == "private_message") {
+        } else if (tipo == "private_message" && para == usuario.name) {
             document.querySelector("ul").innerHTML += ` <li class="${tipo}"><div class="quebra"><span class="hora">(${hora})</span><span>${mensagem_data[i].from}</span> <h1>para</h1> <span></span> <span>${para}: </span> <h1>${texto}</h1></div> </li>`
         }
     }
+    console.log(mensagem_data);
     ultima()
 }
 
@@ -131,21 +122,62 @@ function ultima() {
 }
 
 
-//setInterval(atualizar, 3000)
+//setInterval(atualizar, 10000)
 
-function enviarMensagem(){
-  let arruma = document.querySelector(".enviarMensagem").value
-  let froma = usuario.name
-  let envia = {from: `${froma}`,
-  to: "Todos",
-  text: `${arruma}`,
-  type: "message" 
+function enviarMensagem() {
+    let arruma = document.querySelector(".enviarMensagem").value
+    let froma = usuario.name
+    let envia = "";
+    let procu = document.querySelector(".onlines");
+    let procurar = procu.querySelector(`.${usuario_msg}`)
+    if (procurar != null) {
+        if (usuario_msg === "Todos"){
+            envia = {
+            from: `${froma}`,
+            to: `${usuario_msg}`,
+            text: `${arruma}`,
+            type: "message"
+        }
+    } else if ( usuario_msg) {
+            envia = {
+            from: `${froma}`,
+            to: `${usuario_msg}`,
+            text: `${arruma}`,
+            type: "private_message"
+        }
+    }
+
+    }
+    
+    const manda = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', envia);
+    document.querySelector(".enviarMensagem").value = "";
+    atualizar();
 }
- const manda = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', envia);
- document.querySelector(".enviarMensagem").value = "";
-}
-function ativaonline(){
+function ativaonline() {
     document.querySelector(".participantes").classList.toggle("desativa");
     document.querySelector(".participantes").classList.toggle("ativa");
     document.querySelector(".sala").classList.toggle("fundo");
+}
+function mode(ref){
+    let referencia = document.querySelector(".addum");
+    if (referencia !== null) {
+        referencia.classList.remove("addum");
+    }
+    ref.querySelector(".seleceionei").classList.add("addum");
+    modo = ref.querySelector("span").innerHTML;
+    console.log(modo);
+
+}
+function seleciona(ref) {
+
+    let referencia = document.querySelector(".add");
+    console.log(referencia);
+    if (referencia !== null) {
+        referencia.classList.remove("add");
+    }
+
+    ref.querySelector(".seleceionei").classList.add("add");
+    usuario_msg = ref.querySelector(".guri").innerHTML;
+    console.log(usuario_msg);
+
 }
