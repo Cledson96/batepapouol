@@ -1,6 +1,7 @@
 let data_name = "";
 let mensagem_data = "";
 let usuario = { name: "" };
+let usuario_msg = "";
 //let toon = { name: "" };
 
 function colocar_nome() {
@@ -69,12 +70,25 @@ function online1(ref){
     
     let toon = ref.data;
     console.log(toon);
-    document.querySelector(".onlines").innerHTML = "";
+    document.querySelector(".onlines").innerHTML = `<div onclick="seleciona(this)" class="fiz"> <div><img src="/imagens/sem.png" > <span class="guri">Todos</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>`;
     for (let i = 0; i < toon.length ;i++) {
         let gurii = toon[i].name;
-        document.querySelector(".onlines").innerHTML += `<div class="fiz"> <img src="/imagens/pessoa.png" > <span class="guri">${gurii}</span></div>` 
+        document.querySelector(".onlines").innerHTML += `<div onclick="seleciona(this)" class="fiz"> <div> <img src="/imagens/pessoa.png" > <span class="guri">${gurii}</span></div><span class="seleceionei"> <img src="/imagens/selecionado.png" ></span></div>` 
     }
     
+}
+function seleciona(ref){
+  
+    let referencia = document.querySelector(".add");
+    console.log(referencia);
+    if (referencia !== null){
+        referencia.classList.remove("add");
+    }
+
+    ref.querySelector(".seleceionei").classList.add("add");
+    usuario_msg = ref.querySelector(".guri").lastChild;
+    console.log(usuario_msg);
+
 }
 function puxarmensagem(ref) {
     mensagem_data = ref.data;

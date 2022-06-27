@@ -264,10 +264,11 @@ h2 {
     overflow-y: scroll;
 }
 
+
 .onlines img {
     width: 21px;
     height: 21px;
-    ont-family: 'Roboto';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -281,12 +282,14 @@ h2 {
     display: flex;
     margin-left: 20px;
     margin-bottom: 10px;
-}
-.direita div{
-    margin-left: 20px;
-    margin-top: 10px;
+    justify-content: space-between;
 
 }
+.fiz div{
+    display: flex;
+    
+}
+
 .fundo{
 
 }
@@ -301,4 +304,12 @@ h2 {
     width: 70vw;
     height: 100vh;
     background-color: #FFFFFF;
+}
+.seleceionei{
+    display: none;
+}
+.add{
+    display: flex;
+   align-items: flex-end;
+   
 }
