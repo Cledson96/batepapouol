@@ -10,10 +10,12 @@
     max-width: 100vw;
     max-height: 100vh;
 }
+
 h1 {
-   
+
     max-width: 100%;
 }
+
 body {
     max-height: 800px;
 
@@ -30,7 +32,8 @@ body {
     max-width: 1300px;
 
 }
-input{
+
+input {
     display: flex;
     overflow-wrap: break-word;
 }
@@ -116,7 +119,7 @@ li {
     margin-bottom: 2px;
     width: 100%;
     height: -moz-max-content;
-    padding-top:10px;
+    padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 2px;
     font-size: 14px;
@@ -196,10 +199,9 @@ div {
 }
 
 .caixa_mensagem {
+    flex-direction: column;
     margin-top: 5px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: absolute;
     bottom: 0;
     min-width: 100%;
@@ -223,12 +225,12 @@ div {
 .participantes {
 
     z-index: 15000;
-   
+
     min-width: 100vw;
     min-height: 100vh;
     position: absolute;
     right: 0;
-   
+
     align-items: center;
 }
 
@@ -286,54 +288,85 @@ h2 {
     color: #000000;
     margin-right: 10px;
 }
-.fiz{
+
+.fiz {
     display: flex;
     margin-left: 20px;
     margin-bottom: 10px;
     justify-content: space-between;
 
 }
-.fiz div{
+
+.fiz div {
     display: flex;
-    
-}
-
-.fundo{
 
 }
-.esquerda{
+
+.fundo {}
+
+.esquerda {
     width: 30vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
 
 
 }
-.direita{
+
+.direita {
     width: 70vw;
     height: 100vh;
     background-color: #FFFFFF;
 }
-.seleceionei{
+
+.seleceionei {
     display: none;
 }
-.add{
+
+.add {
     display: flex;
-   align-items: flex-end;
-   
+    align-items: flex-end;
+
 }
-.addum{
+
+.addum {
     display: flex;
-   align-items: flex-end;
-   
+    align-items: flex-end;
+
 }
-.publico , .reservadamente{
+
+.publico,
+.reservadamente {
     display: flex;
     justify-content: space-between;
 }
+
 .seleceionei img {
-   
+
     width: 21px;
     height: 21px;
-    
 
+
+}
+
+.primeiro {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+h5 {
+    display: flex;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 15px;
+    color: #505050;
 }

@@ -83,11 +83,13 @@ function online1(ref) {
 
 function puxarmensagem(ref) {
     mensagem_data = ref.data;
+    document.querySelector("ul").innerHTML = ""
     for (let i = 0; i < mensagem_data.length; i++) {
         let tipo = mensagem_data[i].type
         let texto = mensagem_data[i].text
         let para = mensagem_data[i].to
         let hora = mensagem_data[i].time
+
 
         if (tipo == "status") {
             document.querySelector("ul").innerHTML += ` <li class="${tipo}"><span class="hora">(${hora})</span><span>${mensagem_data[i].from}</span> entra na sala ... </li>`
@@ -107,8 +109,7 @@ function atualizar() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(verifica);
     promessa.catch(erro);
-    onlinep();
-
+   
 }
 function verifica(ref) {
     let compara = ref.data;
@@ -122,8 +123,9 @@ function ultima() {
     apareca.scrollIntoView();
 }
 
+setInterval( onlinep, 10000);
 
-setInterval(atualizar, 3000)
+setInterval(atualizar, 3000);
 
 function enviarMensagem() {
     let arruma = document.querySelector(".enviarMensagem").value
@@ -180,7 +182,10 @@ function mode(ref){
 
 }
 function seleciona(ref) {
-
+    document.querySelector(".caixa_mensagem").innerHTML = `<div class="primeiro">
+                                                                <input class="enviarMensagem" type="text" placeholder="Escreva aqui...">
+                                                                <img onclick="enviarMensagem()" src="/imagens/enviar.png"> </div>
+                                                                <h5>Enviando para ${ref.querySelector(".guri").innerHTML}(${modo})</h5>`;
     let referencia = document.querySelector(".add");
     console.log(referencia);
     if (referencia !== null) {
