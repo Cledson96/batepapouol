@@ -7,6 +7,7 @@ let modo = "Público";
 let procu = document.querySelector(".onlines");
 let procurar = procu.querySelector(`.${usuario_msg}`);
 
+document.addEventListener('keyup',function(apertou){if (apertou.key === 'Enter') {enviarMensagem()}})
 function colocar_nome() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
     usuario = {
