@@ -15,7 +15,6 @@ function colocar_nome() {
     onlinep();
     promessa.then(entrarsala);
     promessa.catch(erro);
-
 }
 
 function entrarsala(resposta) {
